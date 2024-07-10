@@ -61,15 +61,15 @@ class PlayerImpl(Player):
             return False
 
         self._pets.add(pet)
+        pet.owner = self
         return True
 
     def remove_pet(self, pet: pet_model.Pet) -> bool:
         if pet not in self._pets:
             return False
 
-
-
         self._pets.remove(pet)
+        pet.owner = None
         return True
 
     def add_coins(self, coins: int) -> bool:

@@ -11,6 +11,11 @@ class Pet(ABC):
     def owner(self) -> player_model.Player:
         ...
 
+    @owner.setter
+    @abstractmethod
+    def owner(self, player: player_model.Player) -> None:
+        ...
+
     @abstractmethod
     def eat(self, item: item_model.Food) -> bool:
         ...
