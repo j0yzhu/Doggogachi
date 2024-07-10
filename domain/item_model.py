@@ -5,8 +5,8 @@ class Item(ABC):
 
 
 class Food(ABC, Item):
-    def __init__(self, hunger_reduction: int):
-        self.hunger_reduction: int = hunger_reduction
+    def __init__(self, food_lvl_increase: int):
+        self.food_lvl_increase: int = food_lvl_increase
 
 
 class Kibble(Food):
