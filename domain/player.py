@@ -1,14 +1,15 @@
 from abc import ABC, abstractmethod
 
-from domain import inventory_item, pet
+from domain import items, pets
+from typing import List
 
 class Player(ABC):
     @abstractmethod
-    def add_pet(self, pet: pet.Pet) -> bool:
+    def add_pet(self, pet: pets.Pet) -> bool:
         ...
 
     @abstractmethod
-    def remove_pet(self, pet: pet.Pet) -> bool:
+    def remove_pet(self, pet: pets.Pet) -> bool:
         ...
 
     @abstractmethod
@@ -20,14 +21,15 @@ class Player(ABC):
         ...
 
     @abstractmethod
-    def add_item(self, item: item.Item) -> bool:
+    def add_item(self, item: items.Item) -> bool:
         pass
 
     @abstractmethod
-    def remove_item(self, item: item.Item) -> bool:
+    def remove_item(self, item: items.Item) -> bool:
         pass
 
 
 class PlayerImpl(Player):
+
     def __init__(self):
-        self._pet_list =
+        self._pet_list: List[pet.Pet]

@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
-from domain import inventory_item
+from domain import items
 
 
-class Dog(ABC):
+class Pet(ABC):
     @abstractmethod
-    def eat(self, item: item.Food) -> bool:
+    def eat(self, item: inventory_item.Food) -> bool:
         ...
 
     @abstractmethod
