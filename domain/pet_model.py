@@ -1,10 +1,18 @@
+import typing
 from abc import ABC, abstractmethod
-from domain import items
+
+if typing.TYPE_CHECKING:  # Not imported at runtime, only when type checking
+    from domain import player_model, item_model
 
 
 class Pet(ABC):
+    @property
     @abstractmethod
-    def eat(self, item: inventory_item.Food) -> bool:
+    def owner(self) -> player_model.Player:
+        ...
+
+    @abstractmethod
+    def eat(self, item: item_model.Food) -> bool:
         ...
 
     @abstractmethod
