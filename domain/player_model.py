@@ -6,52 +6,23 @@ if typing.TYPE_CHECKING:  # Not imported at runtime, only when type checking
     from typing import Set
 
 
-class Player(ABC):
-    @property
-    @abstractmethod
-    def pets(self) -> Set[pet_model.Pet]:
-        pass
-
-    @abstractmethod
-    def add_pet(self, pet: pet_model.Pet) -> bool:
-        pass
-
-    @abstractmethod
-    def remove_pet(self, pet: pet_model.Pet) -> bool:
-        pass
-
-    @property
-    @abstractmethod
-    def coins(self) -> int:
-        pass
-
-    @abstractmethod
-    def add_coins(self, coins: int) -> bool:
-        pass
-
-    @abstractmethod
-    def remove_coins(self, coins: int) -> bool:
-        pass
-
-    @property
-    @abstractmethod
-    def items(self) -> Set[item_model.Item]:
-        pass
-
-    @abstractmethod
-    def add_item(self, item: item_model.Item) -> bool:
-        pass
-
-    @abstractmethod
-    def remove_item(self, item: item_model.Item) -> bool:
-        pass
-
-
-class PlayerImpl(Player):
+class Player:
     def __init__(self):
         self._pets: Set[pet_model.Pet] = set()
         self._coins = 0
         self._items: Set[item_model.Item] = set()
+
+    @property
+    def pets(self) -> Set[pet_model.Pet]:
+        return self._pets
+
+    @property
+    def coins(self) -> int:
+        return self._coins
+
+    @property
+    def items(self) -> Set[item_model.Item]:
+        return self._items
 
     def add_pet(self, pet: pet_model.Pet) -> bool:
         if pet in self._pets:
@@ -95,4 +66,14 @@ class PlayerImpl(Player):
             return False
 
         self._items.remove(item)
+        return True
+
+    def feed(self, pet: pet_model.Pet, food: item_model.Food) -> bool:
+        if pet not in self.pets or food not in self.items:
+            return False
+
+        if not pet.eat(food):  # If the pet isn't hungry
+            return False
+
+        self._items.remove(food)
         return True
