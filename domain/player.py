@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from domain import item, pet
+from domain import inventory_item, pet
 
 class Player(ABC):
     @abstractmethod
@@ -26,3 +26,8 @@ class Player(ABC):
     @abstractmethod
     def remove_item(self, item: item.Item) -> bool:
         pass
+
+
+class PlayerImpl(Player):
+    def __init__(self):
+        self._pet_list =

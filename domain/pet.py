@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from domain import item
+from domain import inventory_item
 
 
 class Dog(ABC):
